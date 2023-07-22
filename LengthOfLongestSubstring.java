@@ -1,5 +1,5 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LengthOfLongestSubstring {
     /**
@@ -33,24 +33,16 @@ public class LengthOfLongestSubstring {
      * @return
      */
     public int lengthOfLongestSubstring(String s) {
-        int max = 0;
-        int cur = 0;
-        int j = 0;
-        Set set = new HashSet();
-
-        for(int i = 0; i < s.length(); i++) {
-           while (j < s.length()) {
-               char o = s.charAt(j);
-               j++;
-               if (!set.contains(o)) {
-                   cur++;
-                   set.add(s.charAt(o));
-               } else {
-                   max = Math.max(max, cur);
-               }
+       Map<Character, Integer> map = new HashMap<>();
+       int max = 0, left = 0;
+       for (int i = 0; i < s.length(); i++) {
+           if (map.containsKey(s.charAt(i))) {
+               left = Math.max(left, map.get(s.charAt(i)) + 1);
            }
-        }
-        return max;
+           map.put(s.charAt(i), i);
+           max = Math.max(max, i-left+1);
+       }
+       return max;
     }
 
     public static void main(String[] args) {
