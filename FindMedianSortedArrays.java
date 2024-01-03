@@ -30,6 +30,6 @@ public class FindMedianSortedArrays {
      * -106 <= nums1[i], nums2[i] <= 106
      */
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-
+        return 1;
     }
 }
